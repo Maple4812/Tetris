@@ -46,8 +46,8 @@ tetris_shapes = [
 
     [[6, 6, 6, 6]],
 
-    [[0, 7, 7],
-     [0, 7, 7]]
+    [[7, 7],
+     [7, 7]]
 ]
 
 
@@ -296,6 +296,7 @@ class TetrisApp(object):
 
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.event.set_blocked(pygame.MOUSEMOTION)  # We do not need
+        pygame.display.set_caption("경희고등학교 3학년 남현호 테트리스 인공지능")
         # mouse movement
         # events, so we
         # block them.
@@ -672,7 +673,6 @@ class TetrisApp(object):
                     action_list.append(action)
                     self.board2 = copy.deepcopy(current_board)
                     self.stone2 = current_block
-                    time.sleep(0.3)
 
             # right
             for turn in range(needed_turn):
@@ -686,7 +686,6 @@ class TetrisApp(object):
                     action_list.append(action)
                     self.board2 = copy.deepcopy(current_board)
                     self.stone2 = current_block
-                    time.sleep(0.3)
 
             # middle
             for turn in range(needed_turn):
@@ -698,7 +697,6 @@ class TetrisApp(object):
                 action_list.append(action)
                 self.board2 = copy.deepcopy(current_board)
                 self.stone2 = current_block
-                time.sleep(0.3)
 
             # 일단 'O'의 경우에 왼쪽으로 한 칸씩 밀린다...ㅠㅠㅠ
 
@@ -740,11 +738,10 @@ class TetrisApp(object):
 
 if __name__ == '__main__':
     App = TetrisApp()
-    App.eval_network([-0.6, -0.95, 0.92, -0.04, -0.07, -0.8, 0.18])
+    App.eval_network([-0.6, -0.9, 0.79, -0.04, -0.07, -0.8, 0.2])
 
     # score =
-    #         bumpiness
-    #         \* w_list[0] + \
+    #         bumpiness * w_list[0] + \
     #         holes * w_list[1] + \
     #         removed * w_list[2] + \
     #         height_sum * w_list[3] + \
